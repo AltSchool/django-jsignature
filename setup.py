@@ -1,29 +1,39 @@
-from django.conf import settings
+import os
+from setuptools import setup, find_packages
 
-JSIGNATURE_WIDTH = getattr(
-    settings, 'JSIGNATURE_WIDTH', 'ratio')
-JSIGNATURE_HEIGHT = getattr(
-    settings, 'JSIGNATURE_HEIGHT', 'ratio')
-JSIGNATURE_COLOR = getattr(
-    settings, 'JSIGNATURE_COLOR', '#000')
-JSIGNATURE_BACKGROUND_COLOR = getattr(
-    settings, 'JSIGNATURE_BACKGROUND_COLOR', '#FFF')
-JSIGNATURE_DECOR_COLOR = getattr(
-    settings, 'JSIGNATURE_DECOR_COLOR', '#DDD')
-JSIGNATURE_LINE_WIDTH = getattr(
-    settings, 'JSIGNATURE_LINE_WIDTH', 0)
-JSIGNATURE_UNDO_BUTTON = getattr(
-    settings, 'JSIGNATURE_UNDO_BUTTON', False)
-JSIGNATURE_RESET_BUTTON = getattr(
-    settings, 'JSIGNATURE_RESET_BUTTON', True)
+here = os.path.abspath(os.path.dirname(__file__))
 
-JSIGNATURE_DEFAULT_CONFIG = {
-    'width': JSIGNATURE_WIDTH,
-    'height': JSIGNATURE_HEIGHT,
-    'color': JSIGNATURE_COLOR,
-    'background-color': JSIGNATURE_BACKGROUND_COLOR,
-    'decor-color': JSIGNATURE_DECOR_COLOR,
-    'lineWidth': JSIGNATURE_LINE_WIDTH,
-    'UndoButton': JSIGNATURE_UNDO_BUTTON,
-    'ResetButton': JSIGNATURE_RESET_BUTTON,
-}
+setup(
+    name='django-jsignature',
+    version='0.8',
+    author='Florent Lebreton',
+    author_email='florent.lebreton@makina-corpus.com',
+    url='https://github.com/fle/django-jsignature',
+    download_url='https://github.com/fle/django-jsignature/tarball/0.8',
+    description='Use jSignature jQuery plugin in your django projects',
+    long_description=open(os.path.join(here, 'README.rst')).read() + '\n\n' +
+        open(os.path.join(here, 'CHANGES')).read(),
+    license='LPGL, see LICENSE file.',
+    test_suite='runtests.runtests',
+    packages=find_packages(),
+    include_package_data=True,
+    scripts=['manage.py'],
+    zip_safe=False,
+    classifiers=[
+        'Topic :: Utilities',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Intended Audience :: Developers',
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Development Status :: 5 - Production/Stable',
+         'Programming Language :: Python',
+         'Programming Language :: Python :: 2',
+         'Programming Language :: Python :: 2.6',
+         'Programming Language :: Python :: 2.7',
+         'Programming Language :: Python :: 3',
+         'Programming Language :: Python :: 3.2',
+         'Programming Language :: Python :: 3.3',
+         'Programming Language :: Python :: 3.4'
+    ],
+)
