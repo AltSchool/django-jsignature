@@ -3,7 +3,6 @@
     with jSignature jQuery plugin
 """
 import json
-import six
 
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -13,16 +12,13 @@ from .forms import (
     JSIGNATURE_EMPTY_VALUES)
 
 
-class JSignatureField(six.with_metaclass(models.SubfieldBase, models.Field)):
+class JSignatureField(models.TextField):
     """
     A model field handling a signature captured with jSignature
     """
     description = "A signature captured with jSignature"
 
-    def get_internal_type(self):
-        return 'TextField'
-
-    def to_python(self, value):
+    def from_db_value(self, value, *_unused):
         """
         Validates that the input can be red as a JSON object. Returns a Python
         datetime.date object.
