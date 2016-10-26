@@ -2,14 +2,14 @@ import json
 from pyquery import PyQuery as pq
 import six
 
-from django.test import SimpleTestCase
+from django.test import TestCase
 from django.core.exceptions import ValidationError
 
 from jsignature.widgets import JSignatureWidget
 from django.conf import settings
 
 
-class JSignatureWidgetTest(SimpleTestCase):
+class JSignatureWidgetTest(TestCase):
 
     def test_default_media(self):
         widget = JSignatureWidget()

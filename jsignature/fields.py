@@ -3,13 +3,15 @@
     with jSignature jQuery plugin
 """
 import json
+import six
 
 from django.db import models
 from django.core.exceptions import ValidationError
 
 from .forms import (
     JSignatureField as JSignatureFormField,
-    JSIGNATURE_EMPTY_VALUES)
+    JSIGNATURE_EMPTY_VALUES
+)
 
 
 class JSignatureField(models.TextField):

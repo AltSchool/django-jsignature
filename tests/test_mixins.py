@@ -1,5 +1,6 @@
 from datetime import date
-from django.test import SimpleTestCase
+from django.test import TestCase
+from django.core.management import call_command
 
 from jsignature.mixins import JSignatureFieldsMixin
 
@@ -8,9 +9,10 @@ class JSignatureTestModel(JSignatureFieldsMixin):
     pass
 
 
-class JSignatureFieldsMixinTest(SimpleTestCase):
-    def tearDown(self):
-        settings.INSTALLED_APPS = self.old_installed_apps
+class JSignatureFieldsMixinTest(TestCase):
+    def setUp(self):
+        call_command('makemigrations', verbosity=0)
+        call_command('migrate', verbosity=0)
 
     def test_save_create(self):
         # If an object is created signed, signature date must be set

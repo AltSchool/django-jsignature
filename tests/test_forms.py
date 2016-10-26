@@ -1,11 +1,11 @@
-from django.test import SimpleTestCase
+from django.test import TestCase
 from django.core.exceptions import ValidationError
 
 from jsignature.widgets import JSignatureWidget
 from jsignature.forms import JSignatureField
 
 
-class JSignatureFormFieldTest(SimpleTestCase):
+class JSignatureFormFieldTest(TestCase):
 
     def test_widget(self):
         f = JSignatureField()

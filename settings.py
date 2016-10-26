@@ -27,3 +27,10 @@ INSTALLED_APPS = (
 )
 
 DATABASES = {}
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+    },
+]

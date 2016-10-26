@@ -2,7 +2,7 @@ import json
 import os
 import imghdr
 from PIL import Image
-from django.test import SimpleTestCase
+from django.test import TestCase
 
 from jsignature.utils import draw_signature
 
@@ -11,7 +11,7 @@ DUMMY_VALUE = [{"x": [205, 210], "y": [59, 63]},
 DUMMY_STR_VALUE = json.dumps(DUMMY_VALUE)
 
 
-class UtilsTest(SimpleTestCase):
+class UtilsTest(TestCase):
 
     def test_inputs_bad_str_value(self):
         self.assertRaises(ValueError, draw_signature, 'foo_bar')

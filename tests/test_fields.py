@@ -1,35 +1,35 @@
 import json
 import six
 
-from django.test import SimpleTestCase
+from django.test import TestCase
 from django.core.exceptions import ValidationError
 
 from jsignature.fields import JSignatureField
 from jsignature.forms import JSignatureField as JSignatureFormField
 
 
-class JSignatureFieldTest(SimpleTestCase):
+class JSignatureFieldTest(TestCase):
 
-    def test_to_python_empty(self):
+    def test_from_db_value_empty(self):
         f = JSignatureField()
         for val in ['', [], '[]']:
-            self.assertIsNone(f.to_python(val))
+            self.assertIsNone(f.from_db_value(val))
 
-    def test_to_python_correct_value_python(self):
+    def test_from_db_value_correct_value_python(self):
         f = JSignatureField()
         val = [{"x": [1, 2], "y": [3, 4]}]
-        self.assertEquals(val, f.to_python(val))
+        self.assertEquals(val, f.from_db_value(val))
 
-    def test_to_python_correct_value_json(self):
+    def test_from_db_value_correct_value_json(self):
         f = JSignatureField()
         val = [{"x": [1, 2], "y": [3, 4]}]
         val_str = '[{"x":[1,2], "y":[3,4]}]'
-        self.assertEquals(val, f.to_python(val_str))
+        self.assertEquals(val, f.from_db_value(val_str))
 
-    def test_to_python_incorrect_value(self):
+    def test_from_db_value_incorrect_value(self):
         f = JSignatureField()
         val = 'foo'
-        self.assertRaises(ValidationError, f.to_python, val)
+        self.assertRaises(ValidationError, f.from_db_value, val)
 
     def test_get_prep_value_empty(self):
         f = JSignatureField()
