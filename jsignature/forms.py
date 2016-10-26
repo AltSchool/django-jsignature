@@ -17,6 +17,18 @@ class JSignatureField(Field):
     """
     widget = JSignatureWidget()
 
+    def __init__(self, **options):
+        if 'max_length' in options:
+            # Newer Django versions add 'max_length' by default to a TextField:
+            # https://github.com/django/django/blob/1.10.2/
+            # django/db/models/fields/__init__.py#L2138
+            #
+            # The value is None, we don't use it, and it breaks form field
+            # creation. So remove it.
+            del options['max_length']
+
+        super(JSignatureField, self).__init__(**options)
+
     def to_python(self, value):
             """
             Validates that the input can be red as a JSON object.

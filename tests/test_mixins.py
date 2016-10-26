@@ -2,15 +2,12 @@ from datetime import date
 from django.test import TestCase
 from django.core.management import call_command
 
-from jsignature.mixins import JSignatureFieldsMixin
-
-
-class JSignatureTestModel(JSignatureFieldsMixin):
-    pass
+from .models import JSignatureTestModel
 
 
 class JSignatureFieldsMixinTest(TestCase):
     def setUp(self):
+        # Create the dummy model in models.py
         call_command('makemigrations', verbosity=0)
         call_command('migrate', verbosity=0)
 
