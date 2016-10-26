@@ -1,4 +1,4 @@
-from settings import *
+from jsignature.settings import *
 
 import os
 
