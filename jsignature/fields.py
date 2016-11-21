@@ -3,6 +3,7 @@
     with jSignature jQuery plugin
 """
 import json
+import yaml
 import six
 
 from django.db import models
@@ -38,7 +39,17 @@ class JSignatureField(models.TextField):
         if value in JSIGNATURE_EMPTY_VALUES:
             return None
         elif isinstance(value, six.string_types):
-            return value
+            # A little light parse assistance, to manage quirkiness in Django
+            # forms.
+
+            # 'u' should never appear as a proper value; just 'x', 'y' and
+            # numbers. If it's here, it's bad unicode representations, so strip
+            # it.
+            safe_value = value.replace('u', '')
+
+            # yaml can handle single-quotes better than JSON, so use it to
+            # clear them out before saving.
+            return json.dumps(yaml.load(safe_value))
         elif isinstance(value, list):
             return json.dumps(value)
         raise ValidationError('Invalid format.')
