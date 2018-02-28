@@ -1,3 +1,7 @@
+DEPRECATED
+==================
+
+
 A simple way to use `jSignature jQuery plugin <https://github.com/brinley/jSignature/blob/master/README.md>`_ in your `Django <https://www.djangoproject.com>`_ projects.
 
 It provides:
